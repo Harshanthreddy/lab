@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF--8">
+    <title>JavaScript Selectors (Combined)</title>
+    <style>
+        /* A simple style for the highlight class we will add with JavaScript */
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-heading">DOM Selectors Demo 🎯</h1>
+    <p>This is the first paragraph.</p>
+    <div id="list-container">
+        <p>A list of items:</p>
+        <ul>
+            <li class="list-item">Item 1</li>
+            <li class="list-item">Item 2</li>
+            <li class="list-item special">Item 3</li>
+        </ul>
+    </div>
+    <button id="action-button">Click Me</button>
+
+    <script>
+        // Wait for the HTML document to be fully loaded before running the script
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // === 1. Selecting a SINGLE Element ===
+
+            // By ID (the fastest and most reliable method for unique elements)
+            const heading = document.getElementById('main-heading');
+            heading.style.color = 'blue'; // Change the text color to blue
+            console.log('Selected by ID:', heading);
+
+            // Using querySelector (selects the FIRST element that matches the CSS selector)
+            const firstListItem = document.querySelector('.list-item');
+            firstListItem.style.fontWeight = 'bold'; // Make the first list item bold
+            console.log('Selected first .list-item with querySelector:', firstListItem);
+
+
+            // === 2. Selecting MULTIPLE Elements ===
+
+            // By Class Name (returns a live HTMLCollection)
+            const allListItemsByClass = document.getElementsByClassName('list-item');
+            console.log('Selected by Class Name (HTMLCollection):', allListItemsByClass);
+            // You must loop through the collection to style each element
+            for (let i = 0; i < allListItemsByClass.length; i++) {
+                allListItemsByClass[i].style.textDecoration = 'underline';
+            }
+
+            // Using querySelectorAll (returns a static NodeList - very flexible!) ✨
+            const allListItemsByQuery = document.querySelectorAll('.list-item');
+            console.log('Selected with querySelectorAll (NodeList):', allListItemsByQuery);
+            // You can easily loop over a NodeList with .forEach()
+            allListItemsByQuery.forEach(item => {
+                item.style.border = '1px solid grey';
+                item.style.margin = '5px';
+            });
+
+            
+            // === 3. More Advanced Selection ===
+            
+            // Selecting an element with multiple selectors
+            const specialItem = document.querySelector('.list-item.special');
+            specialItem.classList.add('highlight'); // Add the 'highlight' class
+            console.log('Selected the special item:', specialItem);
+
+            // Add an event listener to the button
+            const button = document.getElementById('action-button');
+            button.addEventListener('click', () => {
+                alert('You clicked the button!');
+            });
+        });
+    </script>
+</body>
+</html>
