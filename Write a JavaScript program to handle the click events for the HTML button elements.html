@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Button Click Events (Final)</title>
+    <style>
+        body { font-family: system-ui, sans-serif; text-align: center; }
+        .container {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            border: 1px solid #555;
+            border-radius: 5px;
+        }
+        #counter-btn { background-color: #e0f7fa; }
+        .color-btn { color: white; }
+    </style>
+</head>
+<body>
+
+    <h1>Handling Button Clicks 🖱️</h1>
+
+    <div class="container">
+        <h2>Single Button Example</h2>
+        <button id="counter-btn">Click me: 0</button>
+        <p id="counter-status">The button has not been clicked yet.</p>
+    </div>
+
+    <div class="container">
+        <h2>Multiple Buttons Example</h2>
+        <p>Click a button to change my background color!</p>
+        <div id="color-box" style="padding: 20px; border: 1px solid #333; margin-top: 10px;">
+            I am the color box.
+        </div>
+        <div>
+            <button class="color-btn" data-color="blue" style="background-color: blue;">Blue</button>
+            <button class="color-btn" data-color="green" style="background-color: green;">Green</button>
+            <button class="color-btn" data-color="red" style="background-color: red;">Red</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const counterButton = document.getElementById('counter-btn');
+            const counterStatus = document.getElementById('counter-status');
+            
+            if (counterButton) {
+                let clickCount = 0;
+                counterButton.addEventListener('click', () => {
+                    clickCount++;
+                    counterButton.textContent = `Click me: ${clickCount}`;
+                    counterStatus.textContent = `You have clicked the button ${clickCount} time(s).`;
+                });
+            }
+
+            const colorButtons = document.querySelectorAll('.color-btn');
+            const colorBox = document.getElementById('color-box');
+            
+            if (colorBox && colorButtons.length > 0) {
+                colorButtons.forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        const clickedButton = event.target;
+                        const newColor = clickedButton.dataset.color;
+                        
+                        colorBox.style.backgroundColor = newColor;
+                        colorBox.textContent = `My color is now ${newColor}.`;
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
