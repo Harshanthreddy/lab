@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Function Types</title>
+</head>
+<body>
+    <h1>Demonstrating Three Types of Functions</h1>
+    <p>Open the developer console (F12) to see the output.</p>
+
+    <script>
+        function addDeclaration(a, b) {
+            return a + b;
+        }
+
+        const addExpression = function(a, b) {
+            return a + b;
+        };
+
+        const addArrow = (a, b) => a + b;
+
+        const num1 = 10;
+        const num2 = 5;
+
+        console.log("--- Function Results ---");
+        
+        const result1 = addDeclaration(num1, num2);
+        console.log(`Using Function Declaration: ${num1} + ${num2} = ${result1}`);
+
+        const result2 = addExpression(num1, num2);
+        console.log(`Using Function Expression:  ${num1} + ${num2} = ${result2}`);
+
+        const result3 = addArrow(num1, num2);
+        console.log(`Using Arrow Function:       ${num1} + ${num2} = ${result3}`);
+    </script>
+</body>
+</html>
